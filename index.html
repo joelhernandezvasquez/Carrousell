@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+	<link href="main.css" rel="stylesheet" type="text/css">
+	<script>
+	
+	function loadSetting()
+		{
+			const previousButton = document.querySelector("#leftArrow");
+			
+			previousButton.style.display = "none";
+		}
+		
+		function moveSlideForward()
+		{
+			const track = document.querySelector(".image-container");
+			
+			const currentSlide = document.querySelector(".is-selected");
+			
+			const nextSlide = currentSlide.nextElementSibling;
+			
+			const amountToMove = nextSlide.style.left;
+			
+			track.style.transform = `translateX(-${amountToMove})`;
+			
+			nextSlide.classList.add("is-selected");
+			currentSlide.classList.remove("is-selected");
+			
+			const lastSlide = !nextSlide.nextElementSibling;
+			const previousButton = document.querySelector("#leftArrow");
+			
+			if(lastSlide)
+				{
+					this.style.display = "none";
+				}
+			else
+				{
+					previousButton.style.display = "block";
+				}
+			
+			
+		}
+		
+		function moveSlideBack()
+		{
+			const track = document.querySelector(".image-container");
+			
+			const currentSlide = document.querySelector(".is-selected");
+			
+			const previousSlide = currentSlide.previousElementSibling;
+			
+			const amountToMove = previousSlide.style.left;
+			
+			track.style.transform = `translateX(-${amountToMove})`;
+			
+			currentSlide.classList.remove("is-selected");
+			previousSlide.classList.add("is-selected");
+		
+			
+			const firstSlide = !previousSlide.previousElementSibling;
+			const nextButton = document.querySelector("#rightArrow");
+			
+			if(firstSlide)
+				{
+					this.style.display = "none";
+				}
+			else
+				{
+					nextButton.style.display = "block";
+				}
+		}
+		
+		function moveNextDot()
+		{
+			const dotsContainer = document.querySelector(".dots-container");
+			
+			const currentDot = dotsContainer.querySelector(".is-selected");
+			
+			const nextDot = currentDot.nextElementSibling;
+			
+			nextDot.classList.add("is-selected");
+			currentDot.classList.remove("is-selected");
+		}
+		function moveBackDot()
+		{
+			const dotsContainer = document.querySelector(".dots-container");
+			
+			const currentDot = dotsContainer.querySelector(".is-selected");
+			
+			const previousDot = currentDot.previousElementSibling;
+			
+			previousDot.classList.add("is-selected");
+			currentDot.classList.remove("is-selected");
+		}
+		
+		
+	</script>
+	
+</head>
+
+<body>
+	
+<div class="main-container">
+	
+	<div class="left-arrow">
+	
+		<input type="image" src="images/left.png" id="leftArrow">	
+	</div>
+	
+	<div class="track-container">
+	
+		<ul class="image-container">
+		
+			<li class="slide is-selected"> <a href="#" style="background-image: url(' images/photoshop_green_grass_005931_.jpg')"> </a> </li>
+			
+			<li class="slide"> <a href="#" style="background-image: url(' images/Relaxing Nature Scene (9).jpg')"> </a> </li>
+			
+			<li class="slide"> <a href="#" style="background-image: url(' images/widescreen-best-nature-pictures.jpeg.jpg')"> </a> </li>
+			
+			<li class="slide"> <a href="#" style="background-image: url(' images/COUV-Islande-85-6.jpg')"> </a> </li>
+			
+		</ul>
+	
+	</div>
+	
+	<div class="right-arrow">
+	
+		<input type="image" src="images/right.png" id="rightArrow">
+	</div>
+	
+	<div class="dots-container">
+	 
+		<button class="dot is-selected"> </button>
+		<button class="dot"> </button>
+		<button class="dot"> </button>
+		<button class="dot"> </button>
+	</div>
+	
+	
+</div>
+	
+	
+	<script>
+	
+		document.body.unload = loadSetting();
+		
+		const image_container = document.querySelectorAll(".slide");
+		
+		const slides = Array.from(image_container);
+		
+		const sliderWidth = slides[0].getBoundingClientRect().width;
+		
+		slides.forEach((slide,index) =>
+		{
+		  slide.style.left = sliderWidth * index + "px";
+		});
+		
+		const nextButton = document.querySelector("#rightArrow");
+		const previousButton = document.querySelector("#leftArrow");
+		
+		
+		
+		nextButton.addEventListener("click",moveSlideForward);
+		previousButton.addEventListener("click",moveSlideBack);
+	   
+		nextButton.addEventListener("click",moveNextDot);
+		previousButton.addEventListener("click",moveBackDot);
+		
+		
+		
+	</script>
+	
+</body>
+</html>
