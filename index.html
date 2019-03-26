@@ -9,10 +9,9 @@
 	function loadSetting()
 		{
 			const previousButton = document.querySelector("#leftArrow");
-			
 			previousButton.style.display = "none";
 		}
-		
+
 		function moveSlideForward()
 		{
 			const track = document.querySelector(".image-container");
@@ -39,9 +38,7 @@
 				{
 					previousButton.style.display = "block";
 				}
-			
-			
-		}
+			}
 		
 		function moveSlideBack()
 		{
@@ -94,7 +91,6 @@
 			previousDot.classList.add("is-selected");
 			currentDot.classList.remove("is-selected");
 		}
-		
 		
 	</script>
 	
@@ -151,11 +147,13 @@
 		const slides = Array.from(image_container);
 		
 		const sliderWidth = slides[0].getBoundingClientRect().width;
-		
-		slides.forEach((slide,index) =>
+
+		const setPositionSlide = (slide,index) =>
 		{
-		  slide.style.left = sliderWidth * index + "px";
-		});
+			slide.style.left = sliderWidth * index + "px";	
+		}
+		
+		slides.forEach(setPositionSlide);
 		
 		const nextButton = document.querySelector("#rightArrow");
 		const previousButton = document.querySelector("#leftArrow");
